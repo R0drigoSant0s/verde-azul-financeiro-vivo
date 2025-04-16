@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { 
@@ -57,13 +58,7 @@ export default function Auth() {
 
       if (isLogin) {
         // Login with Supabase
-        const { error } = await signIn(trimmedEmail, trimmedPassword);
-        if (error) {
-          if (error.message === 'Invalid login credentials') {
-            throw new Error('Email ou senha incorretos');
-          }
-          throw error;
-        }
+        await signIn(trimmedEmail, trimmedPassword);
         toast({
           title: "Login bem-sucedido",
           description: "Bem-vindo de volta!",
@@ -92,13 +87,7 @@ export default function Auth() {
         }
 
         // Register with Supabase
-        const { error } = await signUp(trimmedEmail, trimmedPassword, username.trim());
-        if (error) {
-          if (error.message.includes('already registered')) {
-            throw new Error('Este email já está cadastrado');
-          }
-          throw error;
-        }
+        await signUp(trimmedEmail, trimmedPassword, username.trim());
         toast({
           title: "Cadastro realizado com sucesso",
           description: "Sua conta foi criada. Você já pode fazer login.",

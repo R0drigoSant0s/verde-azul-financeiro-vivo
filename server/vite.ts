@@ -1,3 +1,4 @@
+
 import express, { type Express } from "express";
 import fs from "fs";
 import path from "path";
@@ -23,7 +24,10 @@ export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
     middlewareMode: true,
     hmr: { server },
-    allowedHosts: true,
+    server: {
+      // Changed from allowedHosts: true to allowedHosts: ["all"]
+      allowedHosts: ["all"]
+    }
   };
 
   const vite = await createViteServer({
