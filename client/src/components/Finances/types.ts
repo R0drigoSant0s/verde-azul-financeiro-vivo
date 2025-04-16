@@ -1,3 +1,4 @@
+
 export type Transaction = {
   id: number;
   description: string;
@@ -5,6 +6,7 @@ export type Transaction = {
   type: 'income' | 'expense' | 'investment';
   date: string;
   budgetId?: number;
+  category?: string;
 };
 
 export type Budget = {
